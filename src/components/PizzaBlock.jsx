@@ -1,0 +1,65 @@
+import {useState} from "react";
+
+function PizzaBlock({name, imageUrl, price, types, sizes}){
+
+    // "id": 1,
+    // "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/2ffc31bb-132c-4c99-b894-53f7107a1441.jpg",
+    // "name": "Сырная",
+    // "types": [0],
+    // "sizes": [26, 40],
+    // "price": 245,
+    // "category": 1,
+    // "rating": 6
+
+    const [pizzaCount, setPizzaCount] = useState(0)
+    const [pizzaType, setPizzaType] = useState(0)
+    const [pizzaSize, setPizzaSize] = useState(0)
+    const pizzaTypes = ['тонкое', 'традиционное']
+
+    const onClickButtonAddPizza = () => setPizzaCount(pizzaCount + 1)
+    const onClickButtonSetPizzaType = (index) => setPizzaType(index)
+    const onClickButtonSetPizzaSize = (index) => setPizzaSize(index)
+
+    return (
+        <div className="pizza-block">
+            <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+            <h4 className="pizza-block__title">{name}</h4>
+            <div className="pizza-block__selector">
+                <ul>
+                    {
+                        types.map((type, index) => {
+                            return <li
+                                key={index}
+                                onClick={() => onClickButtonSetPizzaType(index)}
+                                className={pizzaType === index ? 'active' : ''}
+                            >{pizzaTypes[type]}</li>
+                        })
+                    }
+                </ul>
+                <ul>
+                    {
+                        sizes.map((size, index) => {
+                            return <li
+                                key={index}
+                                onClick={() => onClickButtonSetPizzaSize(index)}
+                                className={pizzaSize === index ? 'active' : ''}
+                            >{size} см.</li>
+                        })
+                    }
+                </ul>
+            </div>
+            <div className="pizza-block__bottom">
+                <div className="pizza-block__price">от {price} ₽</div>
+                <div onClick={onClickButtonAddPizza} className="button button--outline button--add">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z" fill="white"></path>
+                    </svg>
+                    <span>Добавить</span>
+                    <i>{pizzaCount}</i>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default PizzaBlock
