@@ -1,16 +1,16 @@
 import {useState} from "react";
 
-function Sort(){
+function Sort({showPopup, popupSelected, onClickChoicePopUpSort, setPopup}){
 
-    const [showPopup, setPopup] = useState(false)
-    const [popupSelected, setPopupSelected] = useState(0)
+    // const [showPopup, setPopup] = useState(false)
+    // const [popupSelected, setPopupSelected] = useState(0)
 
     const sortList = ['популярности', 'цене', 'алфавиту']
 
-    const onClickChoisePopUpSort = (index) => {
-        setPopupSelected(index)
-        setPopup(false)
-    }
+    // const onClickChoisePopUpSort = (index) => {
+    //     setPopupSelected(index)
+    //     setPopup(false)
+    // }
 
     return (
         <div className="sort">
@@ -32,7 +32,7 @@ function Sort(){
                                 sortList.map((elem, index) => {
                                     return <li
                                         key={index}
-                                        onClick={() => onClickChoisePopUpSort(index)}
+                                        onClick={() => onClickChoicePopUpSort(index)}
                                         className={popupSelected === index ? 'active' : ''}
                                     >{elem}</li>
                                 })

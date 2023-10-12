@@ -1,12 +1,12 @@
 import {useState} from "react";
 
-function Categories(){
+function Categories({activeCategory, setActiveCategory}){
 
-    const [activeCategory, setActiveCategory] = useState(0)
+    // const [activeCategory, setActiveCategory] = useState(0)
 
-    const onClickSetActiveCategory = (index) => {
-        setActiveCategory(index)
-    }
+    // const onClickSetActiveCategory = (index) => {
+    //     setActiveCategory(index)
+    // }
 
     const categories = [
         'Все',
@@ -24,7 +24,7 @@ function Categories(){
                     categories.map((category, index) => {
                         return <li
                             key={index}
-                            onClick={() => onClickSetActiveCategory(index)}
+                            onClick={() => setActiveCategory(index)}
                             className={activeCategory === index ? 'active' : ''}
                         >
                             {category}
