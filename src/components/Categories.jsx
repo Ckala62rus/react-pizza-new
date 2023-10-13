@@ -1,12 +1,21 @@
+import { useSelector, useDispatch } from 'react-redux'
+import { setCategory } from '../redux/slices/categorySlice'
+import {useEffect} from "react";
+
 function Categories({activeCategory, setActiveCategory}){
-    const categories = [
-        'Все',
-        'Мясные',
-        'Вегетарианская',
-        'Гриль',
-        'Острые',
-        'Закрытые',
-    ]
+    const categories = useSelector((state) => state.categories.categories)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(setCategory([
+            'Все',
+            'Мясные',
+            'Вегетарианская',
+            'Гриль',
+            'Острые',
+            'Закрытые',
+        ]))
+    }, [dispatch]);
 
     return (
         <div className="categories">
