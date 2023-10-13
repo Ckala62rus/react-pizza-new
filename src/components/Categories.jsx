@@ -1,13 +1,4 @@
-import {useState} from "react";
-
 function Categories({activeCategory, setActiveCategory}){
-
-    // const [activeCategory, setActiveCategory] = useState(0)
-
-    // const onClickSetActiveCategory = (index) => {
-    //     setActiveCategory(index)
-    // }
-
     const categories = [
         'Все',
         'Мясные',

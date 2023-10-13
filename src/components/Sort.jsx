@@ -1,16 +1,12 @@
-import {useState} from "react";
-
 function Sort({showPopup, popupSelected, onClickChoicePopUpSort, setPopup}){
-
-    // const [showPopup, setPopup] = useState(false)
-    // const [popupSelected, setPopupSelected] = useState(0)
-
-    const sortList = ['популярности', 'цене', 'алфавиту']
-
-    // const onClickChoisePopUpSort = (index) => {
-    //     setPopupSelected(index)
-    //     setPopup(false)
-    // }
+    const sortList = [
+        {name: 'популярности (ASC)', sortProperty: 'rating'},
+        {name: 'популярности (DESC)', sortProperty: '-rating'},
+        {name: 'цене (ASC)', sortProperty: 'price'},
+        {name: 'цене (DESC)', sortProperty: '-price'},
+        {name: 'алфавиту (ASC)', sortProperty: 'title'},
+        {name: 'алфавиту (DESC)', sortProperty: '-title'},
+    ]
 
     return (
         <div className="sort">
@@ -21,7 +17,7 @@ function Sort({showPopup, popupSelected, onClickChoicePopUpSort, setPopup}){
                 <b>Сортировка по:</b>
                 <span
                     onClick={() => setPopup(!showPopup)}
-                >{sortList[popupSelected]}</span>
+                >{sortList[popupSelected].name}</span>
             </div>
             {
                 showPopup &&
@@ -34,7 +30,7 @@ function Sort({showPopup, popupSelected, onClickChoicePopUpSort, setPopup}){
                                         key={index}
                                         onClick={() => onClickChoicePopUpSort(index)}
                                         className={popupSelected === index ? 'active' : ''}
-                                    >{elem}</li>
+                                    >{elem.name}</li>
                                 })
                             }
                         </ul>

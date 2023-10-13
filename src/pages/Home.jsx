@@ -18,7 +18,6 @@ function Home(){
     const [popupSelected, setPopupSelected] = useState(0)
 
     const onClickChoicePopUpSort = (index) => {
-        console.log('set sort ' + index)
         setPopupSelected(index)
         setPopup(false)
     }
@@ -30,7 +29,15 @@ function Home(){
             ${popupSelected > 0 ? `sort=${popupSelected}` : ''}
         `)
             .then(res => res.json())
-            .then(data => setPizzas(data.pizzas))
+            .then(data => {
+                let result = data.pizzas
+
+                if (activeCategory > 0){
+                    result =  result.filter(elem => elem.category === activeCategory)
+                }
+
+                setPizzas(result)
+            })
     },[activeCategory, popupSelected]);
 
     return (
