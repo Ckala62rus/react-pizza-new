@@ -2,6 +2,7 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 function Home(){
 
@@ -39,6 +40,16 @@ function Home(){
                 setPizzas(result)
             })
     },[activeCategory, popupSelected]);
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const params = {
+            category: activeCategory,
+        }
+
+        navigate(`?category=${params.category}`)
+    }, [activeCategory])
 
     return (
        <>
